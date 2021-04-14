@@ -8,21 +8,19 @@ const Post = ({ title, id: postId }) => {
   useEffect(() => {
     const fetchData = async () => {
       const result = await axios.get(`http://localhost:3002/posts/${postId}/comments`);
-      console.log({ result, postId });
       setComments(result.data);
     };
     fetchData();
   }, []);
   const onSubmit = async e => {
     e.preventDefault();
-    await axios.post(`http://localhost:3002/posts/${postId}/comments`, { comment });
+    await axios.post(`http://localhost:3002/posts/${postId}/comments`, { content: comment });
     setComment('');
   };
   const renderComments = () => {
-    console.log({ comments });
     return comments.map(comment => (
       <li key={comment.id} className='list-group-item'>
-        {comment.comment}
+        {comment.content}
       </li>
     ));
   };
