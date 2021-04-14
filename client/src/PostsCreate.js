@@ -11,7 +11,7 @@ const PostsCreate = () => {
   };
   return (
     <div>
-      <h1>CreatePost</h1>
+      <h1>Create a Post...</h1>
       <form onSubmit={onSubmit}>
         <div className='mb-3'>
           <label className='form-label'>
