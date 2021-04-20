@@ -24,17 +24,18 @@ app.get('/events', (req, res) => {
 
 app.post('/events', (req, res) => {
   const { type, data } = req.body;
-  console.log({ type });
-  if (type === 'PostCreated') {
-    const { id, title } = data;
-    posts[id] = { id, title, comments: [] };
-    console.log('PostCreated');
-  } else if (type === 'CommentCreated') {
-    const { id, content, postId } = data;
-    posts[postId].comments.push({ id, content });
-    console.log('CommentCreated', postId);
+  const { id } = data;
+
+  switch (type) {
+    case 'PostCreated':
+      const { title } = data;
+      posts[id] = { id, title, comments: [] };
+      break;
+    case 'CommentCreated':
+      const { content, postId } = data;
+      posts[postId].comments.push({ id, content });
+      break;
   }
-  console.dir({ posts }, 3);
   res.json({});
 });
 

@@ -7,9 +7,9 @@ app.use(express.json());
 app.post('/events', (req, res) => {
   const event = req.body;
 
-  axios.post('http://localhost:3001/events', event);
-  axios.post('http://localhost:3002/events', event); // posts
-  axios.post('http://localhost:3003/events', event); // comments
+  axios.post('http://localhost:3001/events', event); // posts
+  axios.post('http://localhost:3002/events', event); // comments
+  axios.post('http://localhost:3003/events', event); // query
 
   res.status(200).json({});
 });
